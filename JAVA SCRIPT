@@ -1,0 +1,227 @@
+04/05/2026, 20:29 script.js 
+script.js 
+1 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"; 2 
+3 import { 
+4 getFirestore, 
+5 collection, 
+6 addDoc 
+7 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"; 8 
+9 /* ========================= 
+10 FIREBASE 
+11 ========================= */ 
+12 const firebaseConfig = { 
+13 apiKey: "AIzaSyCwO46pzZqN5HSVh3oXTavA8Er_0nlv5lc", 
+14 authDomain: "doce-thank.firebaseapp.com", 
+15 projectId: "doce-thank", 
+16 storageBucket: "doce-thank.firebasestorage.app", 
+17 messagingSenderId: "637117760655", 
+18 appId: "1:637117760655:web:f2ec70aab5b5efe34d9cfa" 
+19 }; 
+20 
+21 const app = initializeApp(firebaseConfig); 
+22 const db = getFirestore(app); 
+23 
+24 /* ========================= 
+25 MENU SCROLL 
+26 ========================= */ 
+27 function scrollToSection(id) { 
+28 const secao = document.getElementById(id); 
+29 
+30 if (secao) { 
+31 secao.scrollIntoView({ 
+32 behavior: "smooth" 
+33 }); 
+34 } 
+35 } 
+36 
+37 /* ========================= 
+38 CARRINHO 
+39 ========================= */ 
+40 let carrinho = []; 
+41 
+42 function addCarrinho() { 
+43 const produto = document.getElementById("produto").value; 
+44 const valor = parseFloat(document.getElementById("valor").value); 
+45 
+46 if (!produto || isNaN(valor)) { 
+47 alert("Selecione um produto válido!"); 
+48 return; 
+49 } 
+50 
+51 carrinho.push({ 
+52 produto, 
+53 valor 
+54 }); 
+55 
+56 renderCarrinho(); 
+57 } 
+localhost:61640/2416be6f-8525-43ce-a14b-ed367a29fa4d/ 1/4
+04/05/2026, 20:29 script.js 
+58 
+59 function removerCarrinho(index) { 
+60 carrinho.splice(index, 1); 
+61 renderCarrinho(); 
+62 } 
+63 
+64 function renderCarrinho() { 
+65 const lista = document.getElementById("listaCarrinho"); 
+66 const totalEl = document.getElementById("totalCarrinho"); 
+67 
+68 if (!lista || !totalEl) return; 
+69 
+70 lista.innerHTML = ""; 
+71 
+72 let total = 0; 
+73 
+74 carrinho.forEach((item, index) => { 
+75 total += item.valor; 
+76 
+77 lista.innerHTML += ` 
+78 <li> 
+79 ${item.produto} - R$ ${item.valor.toFixed(2)} 
+80 <button onclick="removerCarrinho(${index})">❌</button> 
+81 </li> 
+82 `; 
+83 }); 
+84 
+85 totalEl.textContent = total.toFixed(2); 
+86 } 
+87 
+88 /* ========================= 
+89 FINALIZAR PEDIDO 
+90 ========================= */ 
+91 async function finalizarPedido() { 
+92 const cliente = document.getElementById("cliente").value; 
+93 const data = document.getElementById("data").value; 
+94 
+95 if (!cliente || !data || carrinho.length === 0) { 
+96 alert("Preencha cliente, data e adicione itens!"); 
+97 return; 
+98 } 
+99 
+100 const total = carrinho.reduce((soma, item) => soma + item.valor, 0); 101 
+102 try { 
+103 await addDoc(collection(db, "pedidos"), { 
+104 cliente: cliente, 
+105 produto: carrinho.map(i => i.produto).join(", "), 
+106 data: data, 
+107 valor: total.toFixed(2), 
+108 status: "Aguardando Pagamento", 
+109 criadoEm: new Date() 
+110 }); 
+111 
+112 // REDIRECIONAR PAGAMENTO 
+113 window.location.href = 
+114 "pagamento.html?total=" + total + 
+115 "&cliente=" + encodeURIComponent(cliente) + 
+116 "&produtos=" + encodeURIComponent( 
+117 carrinho.map(i => i.produto).join(", ") 
+localhost:61640/2416be6f-8525-43ce-a14b-ed367a29fa4d/ 2/4
+04/05/2026, 20:29 script.js 
+118 ) + 
+119 "&data=" + encodeURIComponent(data); 
+120 
+121 } catch (erro) { 
+122 alert("Erro ao enviar pedido."); 
+123 console.log(erro); 
+124 } 
+125 } 
+126 
+127 /* ========================= 
+128 EVENTOS AO CARREGAR 
+129 ========================= */ 
+130 document.addEventListener("DOMContentLoaded", () => { 
+131 
+132 /* CLIQUE NAS IMAGENS */ 
+133 const imagens = document.querySelectorAll(".galeria img"); 
+134 
+135 imagens.forEach(img => { 
+136 img.addEventListener("click", () => { 
+137 
+138 const nome = img.getAttribute("data-nome"); 
+139 const valor = img.getAttribute("data-valor"); 
+140 
+141 document.getElementById("produto").value = nome; 
+142 document.getElementById("valor").value = parseFloat(valor).toFixed(2); 143 
+144 document.getElementById("pedido").scrollIntoView({ 
+145 behavior: "smooth" 
+146 }); 
+147 
+148 document.getElementById("data").focus(); 
+149 }); 
+150 }); 
+151 
+152 /* CLIQUE NOS SABORES */ 
+153 const sabores = document.querySelectorAll("#cardapio li"); 
+154 
+155 sabores.forEach(item => { 
+156 
+157 item.addEventListener("click", () => { 
+158 
+159 const sabor = item.getAttribute("data-sabor"); 
+160 const valor = item.getAttribute("data-valor"); 
+161 
+162 document.getElementById("produto").value = "Bolo - " + sabor; 
+163 document.getElementById("valor").value = parseFloat(valor).toFixed(2); 164 
+165 document.getElementById("pedido").scrollIntoView({ 
+166 behavior: "smooth" 
+167 }); 
+168 
+169 document.getElementById("data").focus(); 
+170 }); 
+171 
+172 }); 
+173 
+174 
+175 /* PREVIEW FOTO */ 
+176 const preview = document.getElementById("previewBolo"); 
+177 const imgPreview = document.getElementById("imgPreview"); 
+localhost:61640/2416be6f-8525-43ce-a14b-ed367a29fa4d/ 3/4
+04/05/2026, 20:29 script.js 
+178 
+179 sabores.forEach(item => { 
+180 
+181 item.addEventListener("mousemove", (e) => { 
+182 
+183 const img = item.getAttribute("data-img"); 
+184 
+185 if (!img) { 
+186 preview.style.display = "none"; 
+187 return; 
+188 } 
+189 
+190 imgPreview.src = img; 
+191 preview.style.display = "block"; 
+192 
+193 const offsetX = 20; 
+194 const offsetY = 120; 
+195 
+196 let x = e.clientX + offsetX; 
+197 let y = e.clientY - offsetY; 
+198 
+199 if (x + 220 > window.innerWidth) { 
+200 x = window.innerWidth - 230; 
+201 } 
+202 
+203 if (y < 10) { 
+204 y = 10; 
+205 } 
+206 
+207 preview.style.left = x + "px"; 
+208 preview.style.top = y + "px"; 
+209 }); 
+210 
+211 item.addEventListener("mouseleave", () => { 
+212 preview.style.display = "none"; 
+213 }); 
+214 
+215 }); // ✅ FECHA O forEach 
+216 
+217 }); // ✅ FECHA O DOMContentLoaded 
+218 /* ========================= 
+219 LIBERAR HTML 
+220 ========================= */ 
+221 window.addCarrinho = addCarrinho; 
+222 window.finalizarPedido = finalizarPedido; 
+223 window.removerCarrinho = removerCarrinho; 
+224 window.scrollToSection = scrollToSection; 
