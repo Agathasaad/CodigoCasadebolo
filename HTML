@@ -1,0 +1,203 @@
+index.html 
+1 <!DOCTYPE html> 
+2 <html lang="pt-br"> 
+3 <head> 
+4 <meta charset="UTF-8"> 
+5 <title>Sistema de Pedidos</title> 
+6 
+7 <link rel="shortcut icon" href="./imagens/logo.ico" type="image/x-icon"> 8 <link rel="stylesheet" href="style.css"> 
+9 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> 
+10 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel=" stylesheet"> 
+11 </head> 
+12 <body> 
+13 
+14 <!-- DECORAÇÃO LATERAL --> 
+15 <div class="decor-left"> 
+16 ��<br> 
+17 ��<br> 
+18 ��<br> 
+19 �� 
+20 </div> 
+21 
+22 <div class="decor-right"> 
+23 ��<br> 
+24 ��<br> 
+25 ��<br> 
+26 �� 
+27 </div> 
+28 
+29 
+30 <header> 
+31 �� Sistema de Pedidos - Doce Thank - �� 
+32 </header> 
+33 
+34 <div class="menu"> 
+35 <button onclick="scrollToSection('bolos')">�� Bolos</button> 
+36 <button onclick="scrollToSection('pedido')">➕ Novo Pedido</button> 37 
+38 </div> 
+39 
+40 <div class="container"> 
+41 
+42 <!-- �� CARDÁPIO --> 
+43 <div id="cardapio" class="card"> 
+44 <h3>�� Cardápio de Recheios</h3> 
+45 
+46 <p><strong>R$90,00/KG</strong></p> 
+47 <ul> 
+48 <li data-sabor="Ninho com Brigadeiro" data-valor="90.00" data-img=" imagens/hq720.jpg" > 
+49 Ninho com Brigadeiro 
+50 </li> 
+51 <li data-sabor="Ninho com Morango" data-valor="90.00" data-img= "imagens/bolo de-leite-ninho-com-morango-1200x900.jpg" > 
+52 Ninho com Morango 
+53 </li> 
+54 <li data-sabor="Ninho com Doce de Leite" data-valor="90.00" data-img=" imagens/Bolo-de-leite-Ninho-com-cobertura-de-creme-de-leite-Ninho.jpg"> 
+localhost:61640/df431b2d-2f3b-4a57-9ad0-68f6739afde5/ 1/4
+04/05/2026, 20:29 index.html 
+55 Ninho com Doce de Leite 
+56 </li> 
+57 <li data-sabor="Ninho com Abacaxi" data-valor="90.00" data-img=" imagens/large.jpg"> 
+58 Ninho com Abacaxi 
+59 </li> 
+60 <li data-sabor="Oreo" data-valor="90.00" data-img="imagens/G_e9269f-71350ad8- 1bb0-4089-bf13-2031565872da.jpg"> 
+61 Oreo 
+62 </li> 
+63 <li data-sabor="Maracujá com Ganache" data-valor="90.00" data-img=" /imagens/maracuja.jpg"> 
+64 Maracujá com Ganache 
+65 </li> 
+66 <li data-sabor="Casadinho" data-valor="90.00" data-img="/imagens/Torta Casadinho2-.jpg"> 67 Casadinho 
+68 </li> 
+69 </ul> 
+70 
+71 <hr> 
+72 
+73 <p><strong>R$95,00/KG</strong></p> 
+74 <ul> 
+75 <li data-sabor="Ninho com Nutella" data-valor="95.00" data-img="imagens/Torta Ninho-Nutella2-.jpg"> 76 Ninho com Nutella 
+77 </li> 
+78 <li data-sabor="Brigadeiro de Nozes" data-valor="95.00" data-img=" imagens/bnozes.jpg"> 
+79 Brigadeiro de Nozes 
+80 </li> 
+81 <li data-sabor="Ovomaltine" data-valor="95.00" data-img=" 
+/imagens/Dafeiraaobaile-primeiro-dia-54.jpg"> 
+82 Ovomaltine 
+83 </li> 
+84 <li data-sabor="Pistache" data-valor="95.00" data-img="imagens/DSC_2667- e1721999301416.jpg"> 
+85 Pistache 
+86 </li> 
+87 <li data-sabor="Nutella com Morango" data-valor="95.00" data-img=" imagens/WhatsApp-Image-2025-10-10-at-15.40.20-1-e1760121757263.jpeg"> 
+88 Nutella com Morango 
+89 </li> 
+90 <li data-sabor="Red Velvet" data-valor="100.00" data-img="imagens/redevelte.jpg" > 
+91 Red Velvet 
+92 </li> 
+93 <li data-sabor="Ouro Branco" data-valor="95.00" data-img=" 
+/imagens/maxresdefault.jpg"> 
+94 Ouro Branco 
+95 </li> 
+96 </ul> 
+97 </div> 
+98 
+99 
+100 <div class="card"> 
+101 
+102 <div class="card"> 
+103 <h3>�� Nossos Bolos</h3> 
+104 
+105 <div class="galeria"> 
+localhost:61640/df431b2d-2f3b-4a57-9ad0-68f6739afde5/ 2/4
+04/05/2026, 20:29 index.html 
+106 <img src="/imagens/bolodemorango.jpg" data-nome="Bolo de Morango" data-valor=" 90.00"> 
+107 <img src="/imagens/bolodecenoura.jpg" data-nome="Bolo de Cenoura" data-valor=" 95.00"> 
+108 <img src="/imagens/Bolo_Frutos_Tropicais_Baunilha.jpg" data-nome="Bolo Tropical" data-valor="95.00"> 
+109 <img src="/imagens/chocolate.jpeg" data-nome="Bolo de Chocolate" data-valor=" 90.00"> 
+110 <img src="/imagens/redevelte.jpg" data-nome="Red Velvet" data-valor="100.00" > 111 <img src="/imagens/limao.jpg" data-nome="Bolo de Limão" data-valor="95.00"> 112 <img src="/imagens/maracuja.jpg" data-nome="Bolo de Maracujá" data-valor="90.00" > 
+113 <img src="/imagens/bolo-de-doce-de-leite-com-nozes-50858.jpg" data-nome="Doce de Leite com Nozes" data-valor="90.00"> 
+114 <img src="/imagens/receita-de-bolo-de-chocolate-com-cafe.jpg" data-nome=" Chocolate com Café" data-valor="55.00" > 
+115 <img src="/imagens/coco.jpg" data-nome="Bolo de Coco" data-valor="90.00" > 116 <img src="/imagens/DSC_2667-e1721999301416.jpg" data-nome="Bolo de Pistache" data-valor="95.00" > 
+117 </div> 
+118 
+119 </div> 
+120 
+121 <div> 
+122 <div id="bolos"></div> 
+123 <div id="pedido"></div> 
+124 <div id="lista"></div> 
+125 </div> 
+126 
+127 <h3> �� Novo Pedido</h3> 
+128 <input id="cliente" placeholder="Nome do cliente"> 
+129 <input id="produto" placeholder="Produto" readonly> 
+130 <input id="data" type="date"> 
+131 <input id="valor" placeholder="Valor" readonly> 
+132 
+133 <select id="status"> 
+134 <option value="Pendente">Pendente</option> 
+135 <option value="Producao">Em Produção</option> 
+136 <option value="Pronto">Pronto</option> 
+137 <option value="Entregue">Entregue</option> 
+138 </select> 
+139 
+140 <button onclick="addCarrinho()">�� Adicionar ao Carrinho</button> 
+141 <button onclick="finalizarPedido()">✅ Finalizar Pedido</button> 
+142 </div> 
+143 
+144 <div class="card"> 
+145 
+146 <div class="card"> 
+147 <h3>�� Carrinho</h3> 
+148 <ul id="listaCarrinho"></ul> 
+149 <p><strong>Total: R$ <span id="totalCarrinho">0.00</span></strong></p> 150 </div> 
+151 
+152 </div> 
+153 
+154 <!-- ✅ AVISO FINAL --> 
+155 <div class="card aviso-final"> 
+156 <h3>�� Informações Importantes</h3> 
+157 
+158 <p><strong>Retiradas - Não fazemos entregas</strong></p> 
+159 
+localhost:61640/df431b2d-2f3b-4a57-9ad0-68f6739afde5/ 3/4
+04/05/2026, 20:29 index.html 
+160 <p> 
+161 Retiradas são feitas de terça a sábado das <strong>08h às 20h</strong>, 162 domingo das <strong>08h às 18h</strong>. 
+163 Segunda-feira não há retiradas. 
+164 </p> 
+165 
+166 <p> 
+167 É de responsabilidade do cliente retirar os produtos até o horário e data definidos. 168 </p> 
+169 
+170 <hr> 
+171 
+172 <p><strong>Como transportar e armazenar seu bolo</strong></p> 
+173 
+174 <p> 
+175 Nossos bolos são entregues em embalagens apropriadas e devem ser transportados no piso do carro. 
+176 </p> 
+177 
+178 <p> 
+179 O carro deve estar com ar-condicionado ligado. 
+180 </p> 
+181 
+182 <p> 
+183 Ao chegar ao local, coloque o bolo na geladeira. 
+184 </p> 
+185 
+186 <hr> 
+187 
+188 <p> 
+189 <strong>Endereço para retirada:</strong><br> 
+190 Rua Ibitiba, 153 - Lavras<br> 
+191 Guarulhos - SP 
+192 </p> 
+193 </div> 
+194 
+195 </div> 
+196 
+197 <script type="module" src="script.js"></script> 
+198 
+199 <div id="previewBolo"> 
+200 <img id="imgPreview" src=""> 
+201 </div> 
+202 
+203 </body> 
+204 </html> 
